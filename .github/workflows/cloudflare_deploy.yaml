@@ -10,5 +10,5 @@ jobs:
             - name: Deploy Stage
               uses: fjogeleit/http-request-action@v1
               with:
-                  url: '{{ valiables.hook_url }}'
+                  url: '$hook_url'
                   method: 'POST'
