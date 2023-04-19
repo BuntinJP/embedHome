@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.clock-block {
+    @apply flex flex-col items-center justify-center;
+}
