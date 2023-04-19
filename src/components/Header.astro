@@ -63,12 +63,14 @@ const { activeNav } = Astro.props;
                 </button>
                 <ul id="menu-items" class="display-none sm:flex">
                     <li>
-                        <a
-                            href="/posts"
-                            class={activeNav === 'posts' ? 'active' : ''}
-                        >
-                            Posts
-                        </a>
+                        <button
+                            class="rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-400"
+                            id="redeploy-btn"
+                            type="button"
+                            title="Re-deploy"
+                            aria-label="Re-deploy"
+                            >Re-Deploy
+                        </button>
                     </li>
                     <li>
                         <a
@@ -198,6 +200,7 @@ const { activeNav } = Astro.props;
     const menuBtn = document.querySelector('.hamburger-menu');
     const menuIcon = document.querySelector('.menu-icon');
     const menuItems = document.querySelector('#menu-items');
+    const deployButton = document.querySelector('#redeploy-btn');
 
     menuBtn?.addEventListener('click', () => {
         const menuExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
@@ -209,4 +212,27 @@ const { activeNav } = Astro.props;
         );
         menuItems?.classList.toggle('display-none');
     });
+
+    // deploybutton script
+    deployButton?.addEventListener('click', () => {
+        deploy();
+    });
+    const deploy = () => {
+        const url = process.env.THEURL;
+        if (url === undefined) return;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return 'success';
+            })
+            .catch((error) => {
+                return 'error';
+            });
+    };
 </script>
