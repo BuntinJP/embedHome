@@ -1,14 +1,14 @@
 name: Cloudflare Deploy
 run-name: Automatic Deploy to Cloudflare Pages
 on:
-    schedule:
-        - cron: '* */24 * * *'
+  schedule:
+    - cron: "0 * * * *"
 jobs:
-    deployment:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Deploy Stage
-              uses: fjogeleit/http-request-action@v1
-              with:
-                  url: '$HOOK_URL'
-                  method: 'POST'
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Stage
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "${{ vars.HOOK_URL }}"
+          method: "POST"
