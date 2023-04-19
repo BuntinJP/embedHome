@@ -3,6 +3,7 @@ run-name: Automatic Deploy to Cloudflare Pages
 on:
   schedule:
     - cron: "0 * * * *"
+  workflow_dispatch:
 jobs:
   deployment:
     runs-on: ubuntu-latest
