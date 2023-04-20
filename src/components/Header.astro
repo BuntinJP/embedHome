@@ -1,7 +1,6 @@
 ---
 import { LOGO_IMAGE, SITE } from '@config';
 import Hr from './Hr.astro';
-import LinkButton from './LinkButton.astro';
 
 import logoPNG from '/assets/logo.png';
 import logoSVG from '/assets/logo.svg';
@@ -63,14 +62,12 @@ const { activeNav } = Astro.props;
                 </button>
                 <ul id="menu-items" class="display-none sm:flex">
                     <li>
-                        <button
-                            class="rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-400"
-                            id="redeploy-btn"
-                            type="button"
-                            title="Re-deploy"
-                            aria-label="Re-deploy"
-                            >Re-Deploy
-                        </button>
+                        <a
+                            href="https://github.com/BuntinJP/embedhome"
+                            class={activeNav === 'tags' ? 'active' : ''}
+                        >
+                            Repo
+                        </a>
                     </li>
                     <li>
                         <a
@@ -229,10 +226,10 @@ const { activeNav } = Astro.props;
         })
             .then((response) => response.json())
             .then((data) => {
-                return 'success';
+                return 'success' + JSON.stringify(data);
             })
             .catch((error) => {
-                return 'error';
+                return 'error' + JSON.stringify(error);
             });
     };
 </script>
